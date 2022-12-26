@@ -9,42 +9,9 @@ pub enum CalculatorInput {
 
 pub fn evaluate(inputs: &[CalculatorInput]) -> Option<i32> {
 
-    // let mut stack: Vec<CalculatorInput> = Vec::new();
     let mut stack: Vec<i32> = Vec::new();
-    // for i in inputs {
-    //     stack.push(i.clone())
-    // }
-
     let mut val_a;
     let mut val_b;
-
-    // while !stack.is_empty(){
-    //     match stack.pop() {
-    //         None => return None, // Didn't get a first value
-    //         Some(CalculatorInput::Value(x)) => val_a = x.clone(),
-    //         Some(_) => return None, // Bad operator position
-    //     }
-
-    //     match stack.pop() {
-    //         None => return Some(val_a), // Didn't get a second value, evaluate to the first
-    //         Some(CalculatorInput::Value(x)) => val_b = x.clone(),
-    //         Some(_) => return None, // Bad operator position
-    //     }
-
-    //     match stack.pop() {
-    //         None => return None, // Missing operator
-    //         Some(CalculatorInput::Value(_)) => return None, // Bad value position
-    //         Some(CalculatorInput::Add) => stack.push(CalculatorInput::Value(val_a + val_b)),
-    //         Some(CalculatorInput::Subtract) => stack.push(CalculatorInput::Value(val_a - val_b)),
-    //         Some(CalculatorInput::Multiply) => stack.push(CalculatorInput::Value(val_a * val_b)),
-    //         Some(CalculatorInput::Divide) => stack.push(CalculatorInput::Value(val_a / val_b)),
-    //     }
-    // }
-
-    // let mut inputs = inputs.iter();
-
-    // for (val_a, val_b) in inputs {
-
     let mut inputs = inputs.iter();
 
     // Push first value, has to be a value
@@ -64,9 +31,6 @@ pub fn evaluate(inputs: &[CalculatorInput]) -> Option<i32> {
     let mut performed_computation = false;
 
     while !stack.is_empty() {
-
-        // let val_a = stack.pop().unwrap();
-        // let val_b = stack.pop().unwrap();
 
         let result = match inputs.next() {
             None => {
@@ -105,8 +69,7 @@ pub fn evaluate(inputs: &[CalculatorInput]) -> Option<i32> {
             },
         };
 
-        // stack.push(CalculatorInput::Value(result));
-        println!("Intermediate result: {}", result);
+        // println!("Intermediate result: {}", result);
         performed_computation = true;
         stack.push(result);
     }
